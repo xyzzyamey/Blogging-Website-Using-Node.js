@@ -10,6 +10,17 @@ const fs=require('fs');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+const mongoose=require('mongoose');
+mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true})
+    .then((result)=>{
+        app.listen(port, ()=>{
+            console.log(`Application started on port: ${port}`);
+        });
+    })
+    .catch((err)=>{
+        console.log(err);
+    })
+
 
 
 //home page
@@ -23,30 +34,30 @@ app.get('/home',(req,res)=>{
 
 
 
-//teacher login
-app.get('/teacher/login', (req,res)=>{
-    res.render('teacherlogin.ejs');
+// login
+app.get('/login', (req,res)=>{
+    res.render('login.ejs');
 })
 
 
 
-//student login
-app.get('/student/login', (req,res)=>{
-    res.render('studentlogin.ejs');
+
+//signup
+app.get('/signup', (req,res)=>{
+    res.render('signup.ejs');
 })
 
 
 
-//teacher signup
-app.get('/teacher/signup', (req,res)=>{
-    res.render('teachersignup.ejs');
+//myblogs
+app.get('/myblogs:id', (req,res)=>{
+    res.render('myblogs.ejs');
 })
 
 
-
-//student signup
-app.get('/student/signup', (req,res)=>{
-    res.render('studentsignup.ejs');
+//allblogs
+app.get('/allblogs:id', (req,res)=>{
+    res.render('allblogs.ejs')
 })
 
 
@@ -54,5 +65,5 @@ app.get('/student/signup', (req,res)=>{
 
 //error 404 template
 app.use((req,res)=>{
-    res.render('404.ejs');
+    res.status(400).render('404.ejs');
 })
