@@ -9,6 +9,7 @@ const port=80;
 const fs=require('fs');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+const db=require('./db.js')
 
 const mongoose=require('mongoose');
 mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -61,6 +62,10 @@ app.get('/allblogs:id', (req,res)=>{
 })
 
 
+//addblog
+app.get('/addblog:id', (req,res)=>{
+    res.render('addblog.ejs');
+})
 
 
 //error 404 template
