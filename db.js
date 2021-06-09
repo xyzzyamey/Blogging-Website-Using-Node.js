@@ -10,6 +10,10 @@ const blogs= new Schema({
         type: String,
         required: true
     },
+    category:{
+        type: String,
+        required: true
+    },
     title:{
         type: String,
         required: true
@@ -23,6 +27,10 @@ const blogs= new Schema({
         type: String,
         required: true
     },
+    likes: {
+        type: Number,
+        required: true
+    }
 
 
 },{timestamps: true});
