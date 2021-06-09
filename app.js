@@ -5,7 +5,7 @@ const path=require('path');
 const request=require('request');
 app.use(express.urlencoded());
 app.use(express.json());
-const port=80;
+const port=3000;
 const fs=require('fs');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
