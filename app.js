@@ -1,5 +1,6 @@
 const express=require("express");
 const app=express();
+const bcrypt = require('bcrypt');
 const http=require('http');
 const path=require('path');
 const request=require('request');
@@ -10,6 +11,7 @@ const fs=require('fs');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 const db=require('./db.js')
+
 
 const mongoose=require('mongoose');
 mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true, useUnifiedTopology: true})
@@ -29,7 +31,7 @@ app.get('/',(req,res)=>{
     res.redirect('/home');
 })
 
-app.get('/home',(req,res)=>{
+app.get('/home: id',(req,res)=>{
     res.render('home.ejs');
 })
 
@@ -40,12 +42,39 @@ app.get('/login', (req,res)=>{
     res.render('login.ejs');
 })
 
+app.post('/login' ,async (req, res)=>{
+    username = req.body.name;
+    password = req.body.password;
+
+    try{
+        //find user with his password using bcrypt.compare from db
+    }
+    catch{
+
+    }
+})
+
 
 
 
 //signup
 app.get('/signup', (req,res)=>{
     res.render('signup.ejs');
+})
+
+app.post('/signup',async (req,res)=>{
+    try{
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        const user = {username: req.body.name, password: hashedPassword, user};
+        //insert into db
+    }
+    catch{
+        res.status(500).send();
+        console.log('error');
+    }
+    
+
 })
 
 

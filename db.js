@@ -6,7 +6,7 @@ const blogs= new Schema({
         type: String,
         required: true
     },
-    userid:{
+    password:{
         type: String,
         required: true
     },
@@ -44,11 +44,7 @@ const users= new Schema({
     password:{
         type: String,
         required: true
-    },
-    userid:{
-        type: String,
-        required: true
-    },
+    }
 },{timestamps: true})
 
 
