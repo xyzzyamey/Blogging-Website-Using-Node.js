@@ -31,7 +31,7 @@ app.get('/',(req,res)=>{
     res.redirect('/home');
 })
 
-app.get('/home: id',(req,res)=>{
+app.get('/home:id',(req,res)=>{
     res.render('home.ejs');
 })
 
